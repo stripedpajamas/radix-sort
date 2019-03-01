@@ -1,7 +1,11 @@
-const sort = require('./lsd')
+const lsd = require('./lsd')
+const binaryMsd = require('./lsd')
 
-const arr = [170, 45, 75, 90, 02, 802, 2, 66]
+let arr = [170, 45, 75, 90, 02, 802, 2, 66]
 
-sort(arr)
+lsd(arr)
+console.log(arr) // [ 2, 2, 45, 66, 75, 90, 170, 802 ]
 
+arr = [170, 45, 75, 90, 02, 802, 2, 66]
+binaryMsd(arr)
 console.log(arr) // [ 2, 2, 45, 66, 75, 90, 170, 802 ]
