@@ -1,22 +1,24 @@
 function sort (arr) {
-  return sortSection(arr, -1, arr.length)
+  // find a good starting place
+  const initial = Math.min(...arr.map(Math.clz32))
+  return sortSection(arr, -1, arr.length, initial)
 }
 
 function sortSection (arr, zeroBoundary, oneBoundary, bitIdx) {
-  if (bitIdx === 31) {
+  if (bitIdx === 31 || zeroBoundary === arr.length - 1 || oneBoundary === 0) {
     return
   }
   let z = zeroBoundary
   let o = oneBoundary
-  while (z < o) {
-    let idx = z + 1
-    if (getKthBit(arr[idx], bitIdx)) {
-      swap(arr, idx, --o)
+  while ((z + 1) < o) {
+    if (getKthBit(arr[z + 1], bitIdx)) {
+      swap(arr, z + 1, --o)
     } else {
       z++
     }
   }
-  return sortSection(arr, z, o, bitIdx + 1)
+  sortSection(arr, zeroBoundary, z + 1, bitIdx + 1) // sort zero section
+  sortSection(arr, o - 1, oneBoundary, bitIdx + 1) // sort one section
 }
 
 function getKthBit (n, k) {

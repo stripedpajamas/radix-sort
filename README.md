@@ -2,6 +2,9 @@
 
 naive implementations of radix sort
 
+## Binary MSD In-Place
+binary most significant digit in place algorithm recursively separates the elements of the array according to whether their kth binary digit is a 0 or a 1
+
 ## LSD
 least significant digit radix sort is stable. this implementation has queues for digits:
 
